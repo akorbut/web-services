@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 
-const {PORT} = require('./consts')
-
 const app = express();
 
 app.use(cors());
@@ -16,7 +14,11 @@ app.use(require('./routes/parse'));
 app.use(require('./routes/login'));
 app.use(require('./routes/profile'));
 
-app.listen(PORT, (err) => {
+const runServer = (port) => app.listen(port, (err) => {
   if (err) throw err;
-  console.log(`Enabled on port ${PORT}...`);
+  console.log(`Enabled on port ${port}...`);
 });
+
+
+module.exports = { runServer };
+
